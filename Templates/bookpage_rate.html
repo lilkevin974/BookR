@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book details</title>
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style/style.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>  
+
+<body class="book-body">
+    <nav>
+        <h1><a href="{{ url_for ('test')}}"><i class="fa fa-bookmark-o"></i> BookR</a></h1> 
+        <ul class="nav"> 
+            <li><a href="{% block url %}{{ url_for ('logout')}}{% endblock %}"><i class="fa fa-power-off"></i> {% block log %}Log out{% endblock %}</a></li>
+            <li> <i class="fa fa-user-circle"></i> Hi {{ username }}!</li>
+        </ul>  
+    </nav>
+
+    <h1 class="book-title">{{ book.title }}</h1>
+    
+    <container class="book-container" style="border: none;">
+        <section class="book-info">
+            <h1>Book Details</h1>
+
+            <p>Author: <span>{{ book.author }}</span></p>
+            <p>Year: <span>{{ book.year }}</span> </p>
+            <p>Isbn: <span>{{ book.isbn }}</span> </p>
+        </section>
+        
+        <section class="book-rating" style="align-content: center; ">
+           
+            
+                <h2 class="rate-number" style="margin-top: 3rem;">{{ av_rate }} <span>/ 5</span></h2>
+                <div>
+                    <h2 class="rate-number" style="margin: 0;"> 
+                        <span>Your rating : {{ rate }} / 5 <i class="fa fa-star"></i></span >
+                    </h2>
+                    <h2 class="rate-number" style="margin: 0; font-style: italic;"> 
+                        <span>Number of rating : {{ rate_number }}</i></span >
+                    </h2>
+
+                </div>
+                
+            
+                <form action="{{ url_for ('profil', bookpage=book.id)}}" method="POST" style="width: 100%; display: flex; justify-content: center;"> 
+                    <button class="new-review" name="new-review">New review</button>
+                </form>
+               
+    
+        </section>
+        <section class="book-reviews">
+            <div class="header-review">
+                {{ review_number }} review(s)
+            </div>
+            <div class="body-review">
+                <table class="table-review">
+                    <tr class="row-head">
+                        <th class="first-th"> User(s) </th>
+                        <th class="second-th"> Review(s)</th>
+                    </tr>
+                    {% for r in review %}
+                        <tr class="row-body">
+                            <td class="first-td">{{ r.username }}</td>
+                            <td class="second-td">{{ r.review }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </section>
+    </container>
+    
+
+</body>
+  
+    
+
+</html>
+           
+    
+

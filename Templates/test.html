@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for a book</title>
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style/style.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body style="height: 700px; width: 100%; background-image: url({{ url_for ('static', filename='images/books2.jpg')}}); opacity: 0.95;">
+    <nav>
+        <h1><a href="{{ url_for ('test')}}"><i class="fa fa-bookmark-o"></i> BookR</a></h1> 
+        <ul class="nav"> 
+            <li><a href="{% block url %}{{ url_for ('logout')}}{% endblock %}"><i class="fa fa-power-off"></i> {% block log %}Log out{% endblock %}</a></li>
+            <li><i class="fa fa-user-circle"></i> Hi {{ username }}!</li>
+        </ul>  
+    </nav>
+<container class="search-container">
+    <form class="search-box" method="POST">
+        <input class="search-input" type="text" name="isbn" placeholder="Isbn" maxlength="10" size="10">
+        <input class="search-input" type="text" name="title" placeholder="Enter a title" size="40">
+        <input class="search-input" type="text" name="author" placeholder="Enter an author" size="25">
+        <input class="search-input" type="number" name="year" placeholder="Year" value=0 maxlength="4"size="5">
+        <button class="search-button" name="search">Search</button> 
+    </form>
+   
+    <div class="search-result" style="background-color:whitesmoke; opacity: 0.85;">
+        <ol class="search-ol">
+        {% for y in search %}
+            <li class="search-list">
+                <a class="search-link" href= "{{ url_for ('profil', bookpage=y.id) }}">
+                    <p class="p-title">{{ y.title }}</p>
+                    <p class="p-info"> Write by {{ y.author }} in {{ y.year }}</p>
+                </a>
+            </li>
+        {% endfor %}
+        </ol>
+    </div>    
+    <footer class="search-footer">
+        <p class="p-footer">{{ result }} result(s) founded</p>
+    </footer>
+</container>
+    
+    
+</body>
+</html>
+
+
+

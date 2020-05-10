@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+    {% block url %} {{ url_for ('register')}}{% endblock %}
+
+    {% block log %}<i class="fa fa-user-plus"></i> Register{% endblock %}
+
+    {% block alert %} {{ alert }} {% endblock %}
+
+    {% block action %} action="{{ url_for ('test')}}"{% endblock %}
+
+    {% block head %}Login{% endblock %}
+
+    {% block log2 %}Log In{% endblock %}
+
+    {% block create %}
+        <p id="account" style="text-align: center;">Don't have an account? <a href="{{ url_for ('register')}}">Create one</a></p>
+    {% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style/style.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body style="height: 700px; width: 100%; background-image: url({{ url_for ('static', filename='images/books3.jpg')}});opacity:0.95; background-size:100% 100%">
+    <nav>
+        <h1><a href="{{ url_for ('test')}}"><i class="fa fa-bookmark-o"></i> BookR</a></h1> 
+        <ul class="nav"> 
+            <li><a href="{% block url %}{% endblock %}">{% block log %}{% endblock %}</a></li>
+        </ul>  
+    </nav>
+<container>
+        
+    <div>
+        <p class="alert">{% block alert %}{% endblock %}</p>
+    </div>
+    <div class="form" style="height: 100%;">
+        <form class="form-log"  {% block action %} {% endblock %} method="post">
+            <header>{% block head %}{% endblock %}</header>
+            <input type="text" autocomplete="off" id="username" name="username" placeholder="Username" autofocus>
+            <input type="password" id="password" name="password" placeholder="Password">
+            <button class="button-log" name="login" >{% block log2 %}{% endblock %}</button> 
+           
+        </form>
+        {% block create %}
+        
+        {% endblock %}
+
+    </div>
+</container>
+    
+    
+</body>
+</html>
